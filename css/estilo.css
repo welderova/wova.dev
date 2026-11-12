@@ -1,0 +1,130 @@
+/* ==========================================================
+   WOVA.DEV | Estilos do site
+   Índice: 1 Cores e fontes | 2 Base | 3 Menu | 4 Início
+           5 Sobre | 6 Tecnologias | 7 Projetos | 8 Contato
+           9 Celular
+   ========================================================== */
+
+/* ---------- 1. CORES E FONTES ----------
+   Paleta inspirada na foto: azul-marinho da camiseta,
+   âmbar da luz da estante, creme da parede e verde das plantas.
+   Para mudar o visual do site inteiro, basta alterar estas variáveis. */
+:root{
+  color-scheme:dark;
+  --bg:#0e1322;        /* fundo da página */
+  --surface:#161d38;   /* fundo de cards e bloco de código */
+  --line:#2a3560;      /* linhas e bordas */
+  --text:#f3e9dc;      /* texto principal */
+  --muted:#b0aab5;     /* texto secundário */
+  --accent:#f2b05e;    /* cor de destaque (botões e links) */
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; /* títulos */
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;        /* textos */
+  box-sizing:border-box;
+  /* Evita que o conteúdo fique embaixo da barra do celular */
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+/* ---------- 2. BASE ---------- */
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px} /* destaque ao navegar pelo teclado */
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}            /* largura máxima do conteúdo */
+section{padding:5rem 0;border-top:1px solid var(--line)}          /* espaçamento entre seções */
+h2{font:500 1.5rem/1.2 var(--display);margin:0 0 2rem;letter-spacing:-.01em}
+p{max-width:60ch;margin:0 0 1rem}
+
+/* ---------- 3. MENU DO TOPO ---------- */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+nav .logo{font:700 1.125rem var(--display);text-decoration:none}
+nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;font-size:.95rem;color:var(--muted)}
+nav a{text-decoration:none}
+nav ul a:hover{color:var(--text)}
+
+/* ---------- 4. INÍCIO ---------- */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding:4.5rem 0 6rem}
+h1{font:700 clamp(3rem,9vw,6.25rem)/.95 var(--display);letter-spacing:-.035em;margin:0 0 1.5rem}
+.lead{font-size:1.25rem;color:var(--muted);margin-bottom:2rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.7rem 1.25rem;border-radius:.5rem;text-decoration:none;font-weight:500;border:1px solid var(--line)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:#0c1220} /* botão principal */
+.btn:hover{border-color:var(--accent)}
+
+/* Bloco de código decorativo */
+.code{background:var(--surface);border:1px solid var(--line);border-radius:.75rem;padding:1.25rem 1.5rem;font:.9rem/1.8 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;white-space:pre}
+.code .k{color:var(--accent)}   /* palavras-chave */
+.code .s{color:#9fc48a}         /* textos entre aspas */
+.code .c{color:var(--muted)}    /* comentários */
+
+/* Animação de entrada (desligada para quem prefere menos movimento) */
+@media (prefers-reduced-motion:no-preference){
+  .code{animation:rise .8s ease-out both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- 5. SOBRE (com a foto ao fundo) ----------
+   A foto fica em ../img/foto-welder.jpg. Para trocar, substitua o arquivo
+   mantendo o mesmo nome, ou altere o caminho no url(...) abaixo. */
+#sobre{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:30rem;margin:5rem 0;
+  padding:4.5rem 2.5rem;
+  border:1px solid var(--line);
+  border-radius:1rem
+}
+#sobre::before{
+  content:"";position:absolute;
+  inset:0 0 0 38%;                 /* a foto ocupa o lado direito (começa em 38%) */
+  z-index:-1;
+  background:url("../img/foto-welder.jpg") center top/cover no-repeat;
+  /* Esmaece a foto à esquerda para o texto ficar legível */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);
+  mask-image:linear-gradient(90deg,transparent,#000 45%);
+}
+#sobre p{max-width:30rem}          /* largura do texto, para não cobrir o rosto */
+
+/* ---------- 6. TECNOLOGIAS ---------- */
+.stack{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;list-style:none;
+  margin:0;padding:0
+}
+.stack li{
+  padding:.35rem .9rem;
+  border:1px solid var(--line);
+  border-radius:2rem;font-size:.95rem
+}
+
+/* ---------- 7. PROJETOS (carrossel) ---------- */
+.carousel{position:relative}
+.track{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0 0 .5rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(20rem,82%);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:.75rem;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;min-height:15rem} /* largura do card: 20rem */
+.card h3{font:500 1.25rem var(--display);margin:0}
+.card p{color:var(--muted);font-size:.98rem;margin:0}
+.card .tech{color:var(--accent);font-size:.85rem;margin-top:auto}   /* tecnologias usadas */
+.card a{color:var(--accent);text-decoration:none}
+.card a:hover{text-decoration:underline}
+.ctrl{display:flex;gap:.75rem;margin-top:1.25rem}
+.ctrl button{font:inherit;color:var(--text);background:none;border:1px solid var(--line);border-radius:.5rem;padding:.55rem 1.1rem;cursor:pointer}
+.ctrl button:hover{border-color:var(--accent)}
+
+/* ---------- 8. CONTATO E RODAPÉ ---------- */
+.contact a.mail{font:500 clamp(1.5rem,5vw,2.5rem)/1.2 var(--display);text-decoration:none;border-bottom:2px solid var(--accent)}
+.links{display:flex;gap:1.5rem;margin-top:2rem;color:var(--muted)}
+.links a:hover{color:var(--text)}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+/* ---------- 9. CELULAR E TELAS PEQUENAS ---------- */
+@media (max-width:48rem){
+  .hero{grid-template-columns:1fr;padding:2.5rem 0 4rem}   /* início em uma coluna */
+  nav ul{gap:1rem}
+  #sobre{padding:3rem 1.5rem}
+  #sobre::before{inset:0;opacity:.22;-webkit-mask-image:none;mask-image:none} /* foto suave atrás do texto */
+  #sobre p{max-width:none}
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Título que aparece na aba do navegador e no Google -->
+<title>WOVA.DEV | Welder Oliveira, desenvolvedor</title>
+
+<!-- Fontes do Google (se quiser trocar, altere aqui e as variáveis --display e --body no CSS) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Todo o visual do site fica neste arquivo -->
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== MENU DO TOPO ===== -->
+  <nav>
+    <a class="logo" href="#inicio">WOVA.DEV</a>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== INÍCIO (apresentação) ===== -->
+  <header class="hero" id="inicio">
+    <div>
+      <h1>Welder Oliveira</h1>
+      <!-- Frase de apresentação: altere à vontade -->
+      <p class="lead">Desenvolvedor full stack que une 10 anos de experiência no comércio com tecnologia para ajudar o seu negócio a vender mais.</p>
+      <div class="btns">
+        <a class="btn main" href="#contato">Fale comigo</a>
+        <a class="btn" href="#projetos">Ver projetos</a>
+      </div>
+    </div>
+    <!-- Bloco de código decorativo. Cores: k = destaque, s = texto entre aspas -->
+<pre class="code" aria-label="Resumo em código"><span class="k">const</span> dev = {
+  nome: <span class="s">"Welder Oliveira"</span>,
+  marca: <span class="s">"WOVA.DEV"</span>,
+  foco: <span class="s">"full stack"</span>,
+  stack: [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JavaScript"</span>, <span class="s">"Git / GitHub"</span>,<span class="s">"Sass"</span>, <span class="s">"Bootstrap"</span>,<span class="s">"Tailwind CSS"</span>,<span class="s">"jQuery"</span>,<span class="s">"ReactJS"</span>,<span class="s">"TypeScript"</span>,<span class="s">"Next.js"</span>,<span class="s">"Node.js"</span>,<span class="s">"PHP"</span>,<span class="s">"JAVA"</span>,],
+  disponivel: <span class="k">true</span>,
+};</pre>
+  </header>
+
+  <!-- ===== SOBRE MIM (foto de fundo definida no CSS, em #sobre) ===== -->
+  <section id="sobre">
+    <h2>Sobre</h2>
+    <p>Sou criativo, comunicativo e tenho ótimas ideias de projetos para melhorar o seu comércio. Trabalhei 14 anos no varejo, como vendedor e gerente, então entendo o dia a dia de uma loja e o que realmente ajuda a vender.</p>
+    <p>Sou formado em Análise e Desenvolvimento de Sistemas e pós-graduado em Engenharia de Software, com ênfase em Java. Uso essa base técnica para criar soluções simples, úteis e feitas sob medida para o seu negócio.</p>
+  </section>
+
+  <!-- ===== TECNOLOGIAS (uma <li> por tecnologia) ===== -->
+  <section id="tecnologias">
+    <h2>Tecnologias</h2>
+    <ul class="stack">
+      <li>HTML</li>
+      <li>CSS - Bootstrap | SASS |Tailwind</li>
+      <li>JavaScript - TypeScript | jQuery | Node.js</li>
+      <li>ReactJS</li>
+      <li>Next.js</li>
+      <li>Git / GitHub</li>
+      <li>PHP</li>
+      <li>Java</li>
+    </ul>
+  </section>
+
+  <!-- ===== PROJETOS (carrossel) =====
+       Para adicionar um projeto, copie um bloco <li class="card"> inteiro.
+       Para trocar o link, altere o href do último <a> do card. -->
+  <section id="projetos">
+    <h2>Projetos</h2>
+    <div class="carousel" role="region" aria-roledescription="carrossel" aria-label="Projetos">
+      <ul class="track" id="track">
+
+        <li class="card">
+          <h3>Catálogo online para lojas</h3>
+          <p>Exemplo: vitrine digital com produtos, preços e botão de pedido pelo WhatsApp.</p>
+          <span class="tech">HTML, CSS, JavaScript</span>
+          <a href="#">Ver projeto</a>
+        </li>
+
+        <li class="card">
+          <h3>Controle de estoque</h3>
+          <p>Exemplo: sistema para cadastrar produtos, registrar entradas e saídas e avisar quando algo acaba.</p>
+          <span class="tech">PHP, SQL</span>
+          <a href="#">Ver projeto</a>
+        </li>
+
+        <li class="card">
+          <h3>Sistema de vendas em Java</h3>
+          <p>Exemplo: aplicação para registrar vendas e acompanhar o desempenho da equipe.</p>
+          <span class="tech">Java</span>
+          <a href="#">Ver projeto</a>
+        </li>
+
+        <li class="card">
+          <h3>Seu próximo projeto</h3>
+          <p>Tem uma ideia para o seu comércio? Vamos transformá-la em realidade.</p>
+          <span class="tech">Sob medida</span>
+          <a href="#contato">Conversar</a>
+        </li>
+
+      </ul>
+      <!-- Botões do carrossel (a lógica está em js/carrossel.js) -->
+      <div class="ctrl">
+        <button type="button" id="prev" aria-label="Projeto anterior">Anterior</button>
+        <button type="button" id="next" aria-label="Próximo projeto">Próximo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section id="contato" class="contact">
+    <h2>Contato</h2>
+    <p>Tem um projeto ou uma vaga? Me escreva.</p>
+    <a class="mail" href="mailto:wova.dev@gmail.com">wova.dev@gmail.com</a>
+    <div class="links">
+      <a href="https://github.com/welderova" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/welderova/" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- WhatsApp: 55 (Brasil) + DDD + número, sem espaços nem traços -->
+      <a href="https://wa.me/5561999553515" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer>© 2026 WOVA.DEV · Welder Oliveira</footer>
+</div>
+
+<!-- Lógica do carrossel de projetos -->
+<script src="js/carrossel.js"></script>
+</body>
+</html>
