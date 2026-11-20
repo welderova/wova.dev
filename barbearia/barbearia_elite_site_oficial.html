@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Elite | Tradição, Estilo e Visagismo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cinzel (Títulos Clássicos/Luxo) e Plus Jakarta Sans (Leitura Moderna e Grande) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Configuração Customizada do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            950: '#09090b',
+                            900: '#121215',
+                            800: '#1c1c21',
+                            700: '#27272e'
+                        },
+                        gold: {
+                            400: '#f3d06b',
+                            500: '#d4af37',
+                            600: '#b59020',
+                            700: '#8a6b12'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- =================================================================
+         SEÇÃO CSS CUSTOMIZADO (Equivalente ao arquivo css/style.css)
+         ================================================================= -->
+    <style>
+        body {
+            background-color: #09090b;
+            color: #f4f4f5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de brilho dourado sutil */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f3d06b 0%, #d4af37 50%, #b59020 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #b59020 100%);
+        }
+
+        /* Animação 3D e Elevação para os 5 Cards da Equipe */
+        .barber-card-wrapper {
+            perspective: 1000px;
+        }
+
+        .barber-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .barber-card:hover {
+            transform: translateY(-12px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 25px 40px -15px rgba(212, 175, 55, 0.25);
+            border-color: #d4af37;
+        }
+
+        .barber-card .barber-img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .barber-card:hover .barber-img {
+            transform: scale(1.08);
+        }
+
+        /* Animação de pulso suave para o botão flutuante do WhatsApp */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .whatsapp-pulse {
+            animation: pulse-green 2s infinite;
+        }
+
+        /* Transição suave para troca de abas de Visagismo */
+        .fade-in-up {
+            animation: fadeInUp 0.45s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121215;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272e;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-dark-950">
+
+    <!-- =================================================================
+         1. CABEÇALHO FIXO (Navbar)
+         ================================================================= -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-950/90 backdrop-blur-md border-b border-zinc-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 md:h-24">
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl gold-gradient-bg flex items-center justify-center text-dark-950 text-xl shadow-lg group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-scissors -rotate-45"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-xl md:text-2xl tracking-wider text-white block leading-none">BARBEARIA</span>
+                        <span class="font-display font-bold text-sm md:text-base tracking-[0.3em] gold-gradient-text block">ELITE</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#inicio" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors">Início</a>
+                    <a href="#quem-somos" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors">Quem Somos</a>
+                    <a href="#equipe" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors">Nossa Equipe</a>
+                    <a href="#visagismo" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-compass-drafting text-gold-500 text-sm"></i> Visagismo
+                    </a>
+                    <a href="#servicos" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors">Serviços</a>
+                    <a href="#contato" class="text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors">Contato</a>
+                </nav>
+
+                <!-- Botão CTA Header -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="#equipe" class="gold-gradient-bg hover:brightness-110 text-dark-950 font-bold text-base px-6 py-3 rounded-xl shadow-lg shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+                        Agendar Horário
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Abrir menu" class="lg:hidden p-3 rounded-xl bg-dark-800 text-zinc-200 hover:text-gold-400 border border-zinc-700">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark-900 border-b border-zinc-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#inicio" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-zinc-200 hover:bg-dark-800 hover:text-gold-400">Início</a>
+            <a href="#quem-somos" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-zinc-200 hover:bg-dark-800 hover:text-gold-400">Quem Somos</a>
+            <a href="#equipe" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-zinc-200 hover:bg-dark-800 hover:text-gold-400">Nossa Equipe</a>
+            <a href="#visagismo" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-gold-400 bg-dark-800/60">Visagismo / Formato de Rosto</a>
+            <a href="#servicos" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-zinc-200 hover:bg-dark-800 hover:text-gold-400">Serviços e Preços</a>
+            <a href="#contato" class="mobile-link block px-4 py-3 rounded-xl text-lg font-medium text-zinc-200 hover:bg-dark-800 hover:text-gold-400">Contato</a>
+            <div class="pt-2">
+                <a href="#equipe" class="mobile-link block text-center gold-gradient-bg text-dark-950 font-bold text-lg py-3.5 rounded-xl">
+                    Escolher Barbeiro e Agendar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================================================================
+         2. BANNER HERO IMPACTANTE
+         ================================================================= -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+        <!-- Imagem de Fundo com Overlay Escuro -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80" 
+                 alt="Interior luxuoso da Barbearia Elite" 
+                 onerror="this.src='https://placehold.co/1920x1080/121215/d4af37?text=Barbearia+Elite'"
+                 class="w-full h-full object-cover object-center opacity-35">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-950/90 to-dark-950/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950/60"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-800/90 border border-gold-500/40 text-gold-400 text-sm md:text-base font-semibold mb-6">
+                    <i class="fa-solid fa-crown"></i>
+                    <span>A Arte da Barbearia Clássica & Visagismo</span>
+                </div>
+
+                <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
+                    Mais que um corte, a sua <span class="gold-gradient-text">melhor versão.</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed mb-10 max-w-2xl">
+                    Unimos técnicas tradicionais de navalha e toalha quente ao visagismo moderno para criar o corte e a barba perfeitos para o formato do seu rosto.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#equipe" class="gold-gradient-bg hover:brightness-110 text-dark-950 font-bold text-lg px-8 py-4 rounded-xl shadow-xl shadow-gold-500/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Agendar com Nossa Equipe</span>
+                    </a>
+                    <a href="#visagismo" class="bg-dark-800/90 hover:bg-dark-700 text-white border border-zinc-700 hover:border-gold-500 font-semibold text-lg px-8 py-4 rounded-xl flex items-center justify-center gap-3 transition-all">
+                        <i class="fa-solid fa-user-check text-gold-400"></i>
+                        <span>Descobrir Meu Corte Ideal</span>
+                    </a>
+                </div>
+
+                <!-- Indicadores de Confiança -->
+                <div class="grid grid-cols-3 gap-6 mt-14 pt-8 border-t border-zinc-800/80 max-w-xl">
+                    <div>
+                        <span class="font-display font-bold text-2xl sm:text-3xl text-gold-400 block">+10 Anos</span>
+                        <span class="text-sm sm:text-base text-zinc-400">De Tradição</span>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-2xl sm:text-3xl text-gold-400 block">5 Mestres</span>
+                        <span class="text-sm sm:text-base text-zinc-400">Especialistas</span>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-2xl sm:text-3xl text-gold-400 block">4.9 ★</span>
+                        <span class="text-sm sm:text-base text-zinc-400">Avaliação Média</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================
+         3. SEÇÃO 'QUEM SOMOS'
+         ================================================================= -->
+    <section id="quem-somos" class="py-20 md:py-28 bg-dark-900 border-y border-zinc-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <!-- Coluna de Imagens -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative rounded-2xl overflow-hidden border-2 border-zinc-800 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80" 
+                             alt="Barbeiro realizando corte de precisão" 
+                             onerror="this.src='https://placehold.co/900x700/1c1c21/d4af37?text=Ambiente+Barbearia+Elite'"
+                             class="w-full h-[420px] sm:h-[500px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 bg-dark-900/95 backdrop-blur-md p-5 rounded-xl border border-gold-500/30">
+                            <p class="font-display text-gold-400 font-bold text-lg">Experiência & Conforto</p>
+                            <p class="text-zinc-300 text-base mt-1">Ambiente climatizado, café expresso, cerveja artesanal cortesia e atendimento pontual.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna de Texto -->
+                <div class="lg:col-span-6">
+                    <span class="text-gold-400 font-bold tracking-widest uppercase text-sm sm:text-base block mb-3">Nossa História & Filosofia</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-6">
+                        Onde o clássico encontra a <span class="gold-gradient-text">precisão moderna.</span>
+                    </h2>
+                    
+                    <p class="text-lg text-zinc-300 leading-relaxed mb-6">
+                        Fundada com o propósito de resgatar o verdadeiro ritual do cuidado masculino, a <strong>Barbearia Elite</strong> nasceu para ser um refúgio do homem contemporâneo. Aqui, cada atendimento é pensado de forma individualizada.
+                    </p>
+                    <p class="text-lg text-zinc-400 leading-relaxed mb-8">
+                        Não acreditamos em cortes padronizados. Nossa equipe domina desde a tesoura clássica e a barboterapia com ozônio até o degradê milimétrico e o visagismo facial, garantindo que você saia com a autoestima renovada.
+                    </p>
+
+                    <!-- Diferenciais -->
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div class="bg-dark-800 p-5 rounded-2xl border border-zinc-700/70 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/15 text-gold-400 flex items-center justify-center shrink-0 text-xl">
+                                <i class="fa-solid fa-fire-flame-curved"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-lg">Barboterapia Real</h3>
+                                <p class="text-zinc-400 text-base mt-1">Toalha quente, óleos essenciais e massagem facial relaxante.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-dark-800 p-5 rounded-2xl border border-zinc-700/70 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/15 text-gold-400 flex items-center justify-center shrink-0 text-xl">
+                                <i class="fa-solid fa-mug-hot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-lg">Open Bar Cortesia</h3>
+                                <p class="text-zinc-400 text-base mt-1">Café gourmet, água, refrigerante ou sua primeira cerveja por nossa conta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================
+         4. NOSSA EQUIPE (EXATAMENTE 5 CARDS ANIMADOS COM WHATSAPP)
+         ================================================================= -->
+    <section id="equipe" class="py-20 md:py-28 bg-dark-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Cabeçalho da Seção -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm sm:text-base block mb-3">Profissionais de Elite</span>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5">
+                    Escolha seu <span class="gold-gradient-text">Barbeiro Especialista</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-zinc-400">
+                    Clique diretamente no botão verde abaixo do profissional de sua preferência para iniciar seu agendamento imediato via WhatsApp.
+                </p>
+            </div>
+
+            <!-- Grid Responsivo com os 5 Cards Animados (Renderizados via JS para fácil manutenção, mas com estrutura clara) -->
+            <div id="team-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-5">
+                <!-- Os 5 cards dos barbeiros serão injetados aqui pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================
+         5. VISAGISMO: CORTE E BARBA POR FORMATO DE ROSTO (INTERATIVO)
+         ================================================================= -->
+    <section id="visagismo" class="py-20 md:py-28 bg-dark-900 border-y border-zinc-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Título da Seção -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm sm:text-base block mb-3">Consultoria de Imagem Masculina</span>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5">
+                    Visagismo: <span class="gold-gradient-text">Seu Formato de Rosto</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-zinc-300">
+                    Selecione abaixo o formato que mais se aproxima do seu rosto para descobrir as combinações ideais de corte de cabelo e estilo de barba.
+                </p>
+            </div>
+
+            <!-- Seletor Interativo dos 5 Formatos de Rosto -->
+            <div id="face-shape-buttons" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-12">
+                <!-- Botões gerados dinamicamente pelo JS -->
+            </div>
+
+            <!-- Painel de Resultado Detalhado do Visagismo -->
+            <div id="visagismo-result" class="bg-dark-800 rounded-3xl border border-gold-500/30 p-6 sm:p-10 lg:p-12 shadow-2xl">
+                <!-- Conteúdo dinâmico atualizado ao clicar em cada formato de rosto -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================
+         6. TABELA DE SERVIÇOS E PREÇOS
+         ================================================================= -->
+    <section id="servicos" class="py-20 md:py-28 bg-dark-950">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm sm:text-base block mb-3">Menu de Serviços</span>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5">
+                    Nossos Serviços & <span class="gold-gradient-text">Valores</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-zinc-400">
+                    Transparência, produtos importados de alta performance e acabamento impecável em cada procedimento.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Item 1 -->
+                <div class="bg-dark-900 p-6 sm:p-7 rounded-2xl border border-zinc-800 hover:border-gold-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Corte Masculino Visagista</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 60</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed">Análise de perfil facial, corte na tesoura ou máquina (fade/degradê), lavagem especial e finalização com pomada.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-sm text-zinc-400">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 45 min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-semibold">Agendar este serviço →</a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-dark-900 p-6 sm:p-7 rounded-2xl border border-zinc-800 hover:border-gold-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Barboterapia Tradicional</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 50</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed">Alinhamento completo na navalha, duas toalhas quentes aromáticas, esfoliação, massagem facial e balm hidratante.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-sm text-zinc-400">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 40 min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-semibold">Agendar este serviço →</a>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Destaque Combo) -->
+                <div class="bg-gradient-to-br from-dark-800 to-dark-900 p-6 sm:p-7 rounded-2xl border-2 border-gold-500/60 shadow-lg shadow-gold-500/10 flex flex-col justify-between relative">
+                    <span class="absolute -top-3.5 right-6 gold-gradient-bg text-dark-950 text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">Mais Pedido</span>
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Combo Elite (Cabelo + Barba)</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 95</span>
+                        </div>
+                        <p class="text-zinc-300 text-base leading-relaxed">O pacote completo: corte visagista + barboterapia com toalha quente + sobrancelha na navalha + bebida cortesia.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-700/80 flex items-center justify-between text-sm text-zinc-300">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 1h 15min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-bold">Agendar Combo →</a>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-dark-900 p-6 sm:p-7 rounded-2xl border border-zinc-800 hover:border-gold-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Acabamento & Sobrancelha</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 30</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed">Manutenção do pezinho do cabelo, limpeza do contorno da barba e alinhamento natural das sobrancelhas.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-sm text-zinc-400">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 20 min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-semibold">Agendar este serviço →</a>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-dark-900 p-6 sm:p-7 rounded-2xl border border-zinc-800 hover:border-gold-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Camuflagem de Fios Brancos</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 75</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed">Tonalização sutil e natural para cabelo ou barba, reduzindo o aspecto grisalho sem deixar aparência artificial.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-sm text-zinc-400">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 40 min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-semibold">Agendar este serviço →</a>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-dark-900 p-6 sm:p-7 rounded-2xl border border-zinc-800 hover:border-gold-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-4 mb-2">
+                            <h3 class="font-bold text-xl sm:text-2xl text-white">Selagem & Hidratação Capilar</h3>
+                            <span class="font-display font-bold text-2xl text-gold-400 shrink-0">R$ 90</span>
+                        </div>
+                        <p class="text-zinc-400 text-base leading-relaxed">Alinhamento térmico dos fios, redução de volume e frizz com brilho intenso e maciez duradoura.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-sm text-zinc-400">
+                        <span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> 50 min</span>
+                        <a href="#equipe" class="text-gold-400 hover:underline font-semibold">Agendar este serviço →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================================
+         7. RODAPÉ COMPLETO (Contato, Endereço, Horários)
+         ================================================================= -->
+    <footer id="contato" class="bg-dark-900 border-t border-zinc-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-zinc-800">
+                <!-- Coluna 1: Marca -->
+                <div>
+                    <a href="#inicio" class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-dark-950 text-lg">
+                            <i class="fa-solid fa-scissors -rotate-45"></i>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-xl text-white block leading-none">BARBEARIA</span>
+                            <span class="font-display font-bold text-sm tracking-[0.3em] gold-gradient-text block">ELITE</span>
+                        </div>
+                    </a>
+                    <p class="text-zinc-400 text-base leading-relaxed mb-6">
+                        Excelência em cortes masculinos, barboterapia e consultoria de visagismo. Seu estilo elevado ao mais alto padrão.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" aria-label="Instagram" class="w-11 h-11 rounded-xl bg-dark-800 hover:bg-gold-500 text-zinc-300 hover:text-dark-950 flex items-center justify-center transition-colors text-lg">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="w-11 h-11 rounded-xl bg-dark-800 hover:bg-gold-500 text-zinc-300 hover:text-dark-950 flex items-center justify-center transition-colors text-lg">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="TikTok" class="w-11 h-11 rounded-xl bg-dark-800 hover:bg-gold-500 text-zinc-300 hover:text-dark-950 flex items-center justify-center transition-colors text-lg">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Endereço -->
+                <div>
+                    <h4 class="font-display font-bold text-lg text-white mb-5">Onde Estamos</h4>
+                    <ul class="space-y-4 text-zinc-300 text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-gold-400 mt-1.5"></i>
+                            <span>Av. Paulista, 1578 - Loja 04<br>Bela Vista, São Paulo - SP</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-square-parking text-gold-400"></i>
+                            <span>Estacionamento conveniado no local</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-gold-400"></i>
+                            <span>(11) 99999-0000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Horário de Funcionamento -->
+                <div>
+                    <h4 class="font-display font-bold text-lg text-white mb-5">Horários</h4>
+                    <ul class="space-y-3 text-zinc-300 text-base">
+                        <li class="flex justify-between border-b border-zinc-800 pb-2">
+                            <span>Segunda a Sexta:</span>
+                            <span class="text-gold-400 font-semibold">09h às 20h</span>
+                        </li>
+                        <li class="flex justify-between border-b border-zinc-800 pb-2">
+                            <span>Sábado:</span>
+                            <span class="text-gold-400 font-semibold">08h às 18h</span>
+                        </li>
+                        <li class="flex justify-between text-zinc-500">
+                            <span>Domingo:</span>
+                            <span>Fechado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Links Rápidos -->
+                <div>
+                    <h4 class="font-display font-bold text-lg text-white mb-5">Navegação</h4>
+                    <ul class="space-y-2.5 text-zinc-300 text-base">
+                        <li><a href="#inicio" class="hover:text-gold-400 transition-colors">Início</a></li>
+                        <li><a href="#quem-somos" class="hover:text-gold-400 transition-colors">Quem Somos</a></li>
+                        <li><a href="#equipe" class="hover:text-gold-400 transition-colors">Nossa Equipe (5 Barbeiros)</a></li>
+                        <li><a href="#visagismo" class="hover:text-gold-400 transition-colors">Guia de Visagismo</a></li>
+                        <li><a href="#servicos" class="hover:text-gold-400 transition-colors">Tabela de Preços</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-zinc-500 text-sm">
+                <p>© 2026 Barbearia Elite. Todos os direitos reservados.</p>
+                <p>Desenvolvido com excelência para o estilo masculino.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =================================================================
+         BOTÃO FLUTUANTE DO WHATSAPP (Recepção Geral)
+         ================================================================= -->
+    <a href="https://wa.me/5511999990000?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Barbearia%20Elite%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Falar com a recepção no WhatsApp"
+       class="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl whatsapp-pulse transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- =================================================================
+         SEÇÃO JAVASCRIPT (Equivalente ao arquivo js/app.js)
+         ================================================================= -->
+    <script>
+        /**
+         * 1. DADOS DOS 5 COLABORADORES / BARBEIROS
+         * Cada profissional possui foto realista de rosto, especialidade, experiência
+         * e número de WhatsApp próprio com mensagem pré-preenchida personalizada.
+         */
+        const barbeirosData = [
+            {
+                id: 1,
+                nome: "Rafael Mendes",
+                cargo: "Master Barber & Visagista",
+                especialidade: "Cortes na Tesoura & Visagismo",
+                experiencia: "12 anos de exp.",
+                foto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+                // Substituindo por retrato masculino nítido
+                fotoRosto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85",
+                whatsapp: "5511999990001",
+                mensagem: "Olá Rafael! Vi seu perfil no site da Barbearia Elite e gostaria de agendar um horário com você."
+            },
+            {
+                id: 2,
+                nome: "Lucas Andrade",
+                cargo: "Especialista em Fade",
+                especialidade: "Degradê Navalhado & Freestyle",
+                experiencia: "8 anos de exp.",
+                fotoRosto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85",
+                whatsapp: "5511999990002",
+                mensagem: "Olá Lucas! Vi seu perfil no site da Barbearia Elite e gostaria de agendar um horário com você."
+            },
+            {
+                id: 3,
+                nome: "Bruno Costa",
+                cargo: "Mestre da Navalha",
+                especialidade: "Barboterapia & Barba Lenhador",
+                experiencia: "10 anos de exp.",
+                fotoRosto: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85",
+                whatsapp: "5511999990003",
+                mensagem: "Olá Bruno! Vi seu perfil no site da Barbearia Elite e gostaria de agendar um horário com você."
+            },
+            {
+                id: 4,
+                nome: "Thiago Rocha",
+                cargo: "Barber Stylist",
+                especialidade: "Cortes Clássicos & Pompadour",
+                experiencia: "7 anos de exp.",
+                fotoRosto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85",
+                whatsapp: "5511999990004",
+                mensagem: "Olá Thiago! Vi seu perfil no site da Barbearia Elite e gostaria de agendar um horário com você."
+            },
+            {
+                id: 5,
+                nome: "Diego Martins",
+                cargo: "Especialista Afro & Texturas",
+                especialidade: "Cabelos Crespos, Nudred & Platinado",
+                experiencia: "9 anos de exp.",
+                fotoRosto: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=600&q=85",
+                whatsapp: "5511999990005",
+                mensagem: "Olá Diego! Vi seu perfil no site da Barbearia Elite e gostaria de agendar um horário com você."
+            }
+        ];
+
+        /**
+         * 2. DADOS INTERATIVOS DE VISAGISMO POR FORMATO DE ROSTO
+         * Inclui SVG ilustrativo do formato facial, características, corte ideal,
+         * barba ideal e mensagem personalizada para agendamento.
+         */
+        const visagismoData = {
+            oval: {
+                id: "oval",
+                titulo: "Rosto Oval",
+                subtitulo: "Proporções equilibradas e harmônicas",
+                descricao: "Considerado o formato mais versátil no visagismo masculino. Possui testa levemente mais larga que o queixo e contornos suaves, sem ângulos muito marcados.",
+                corteCabelo: {
+                    nome: "Quiff Moderno, Pompadour ou Side Part (Dividido Lateral)",
+                    dica: "Evite franjas muito pesadas cobrindo toda a testa para não arredondar o rosto. Volume no topo e laterais mais baixas (Mid Fade) valorizam sua simetria natural."
+                },
+                estiloBarba: {
+                    nome: "Barba Curta Alinhada (Stubble) ou Barba Cheia Aparada",
+                    dica: "Praticamente qualquer estilo funciona bem. Manter as linhas das bochechas bem definidas e o comprimento uniforme realça a estrutura do maxilar."
+                },
+                svgIcon: `<svg viewBox="0 0 100 120" class="w-12 h-14 mx-auto stroke-current fill-none" stroke-width="4">
+                            <ellipse cx="50" cy="60" rx="32" ry="46" />
+                          </svg>`
+            },
+            quadrado: {
+                id: "quadrado",
+                titulo: "Rosto Quadrado",
+                subtitulo: "Maxilar forte, ângulos retos e masculinos",
+                descricao: "Caracterizado por testa larga, maçãs do rosto alinhadas e mandíbula bem definida e angular. Transmite força, liderança e presença marcante.",
+                corteCabelo: {
+                    nome: "Crew Cut, Buzz Cut (Militar) ou Undercut Texturizado",
+                    dica: "Cortes curtos nas laterais e com leve textura desconectada no topo destacam ainda mais os ângulos fortes do maxilar sem deixar o visual pesado."
+                },
+                estiloBarba: {
+                    nome: "Barba Rala (Por Fazer), Cavanhaque Estendido ou Barba Circular",
+                    dica: "Evite barbas muito quadradas e volumosas nas laterais. Prefira manter as laterais mais baixas e dar um leve alongamento no queixo para suavizar a linha da mandíbula."
+                },
+                svgIcon: `<svg viewBox="0 0 100 120" class="w-12 h-14 mx-auto stroke-current fill-none" stroke-width="4">
+                            <rect x="20" y="16" width="60" height="88" rx="14" />
+                          </svg>`
+            },
+            redondo: {
+                id: "redondo",
+                titulo: "Rosto Redondo",
+                subtitulo: "Linhas curvas e largura semelhante à altura",
+                descricao: "Apresenta bochechas mais cheias, queixo arredondado e poucos ângulos retos. O objetivo do visagismo aqui é alongar verticalmente e criar linhas angulares.",
+                corteCabelo: {
+                    nome: "High Fade com Topete Alto ou Faux Hawk",
+                    dica: "Deixe as laterais bem baixas (raspadas ou degradê alto) e crie altura no topo da cabeça. Isso cria uma ilusão óptica de alongamento vertical do rosto."
+                },
+                estiloBarba: {
+                    nome: "Barba Angular (Ducktail) ou Cavanhaque Alongado",
+                    dica: "Deixe as laterais da barba mais curtas e concentre mais volume e comprimento na região do queixo, formando uma ponta sutil que afina o rosto."
+                },
+                svgIcon: `<svg viewBox="0 0 100 120" class="w-12 h-14 mx-auto stroke-current fill-none" stroke-width="4">
+                            <circle cx="50" cy="60" r="38" />
+                          </svg>`
+            },
+            triangular: {
+                id: "triangular",
+                titulo: "Triangular / Coração",
+                subtitulo: "Testa mais larga e queixo mais fino/pontudo",
+                descricao: "Possui a região superior (testa e têmporas) mais ampla, afunilando em direção a um queixo mais estreito e definido.",
+                corteCabelo: {
+                    nome: "Franja Texturizada (Crop), Cabelo Médio Desfiado ou Side Swept",
+                    dica: "Evite laterais raspadas demais na máquina zero, pois isso acentua a largura da testa. Cortes na tesoura com volume equilibrado nas laterais trazem harmonia."
+                },
+                estiloBarba: {
+                    nome: "Barba Cheia (Full Beard) com Volume na Mandíbula",
+                    dica: "A barba é sua maior aliada! Manter volume na região do maxilar e queixo dá peso visual à parte inferior do rosto, equilibrando perfeitamente com a testa."
+                },
+                svgIcon: `<svg viewBox="0 0 100 120" class="w-12 h-14 mx-auto stroke-current fill-none" stroke-width="4">
+                            <path d="M20,25 Q50,12 80,25 L62,95 Q50,108 38,95 Z" />
+                          </svg>`
+            },
+            diamante: {
+                id: "diamante",
+                titulo: "Rosto Diamante",
+                subtitulo: "Maçãs do rosto proeminentes, testa e queixo estreitos",
+                descricao: "Um formato marcante e exótico, onde a parte mais larga do rosto fica na linha dos olhos/maçãs, enquanto a testa e o queixo são mais estreitos.",
+                corteCabelo: {
+                    nome: "Franja Lateral Longa, Textured Crop ou Cabelo Médio com Volume",
+                    dica: "Cortes com movimento e textura na testa ajudam a dar mais amplitude à parte superior, suavizando o destaque das maçãs do rosto."
+                },
+                estiloBarba: {
+                    nome: "Barba Lenhador Aparada ou Barba Cheia Arredondada",
+                    dica: "Mantenha volume moderado no queixo e na linha da mandíbula para preencher a parte inferior do rosto, evitando pontas muito finas."
+                },
+                svgIcon: `<svg viewBox="0 0 100 120" class="w-12 h-14 mx-auto stroke-current fill-none" stroke-width="4">
+                            <polygon points="50,12 85,60 50,108 15,60" />
+                          </svg>`
+            }
+        };
+
+        /**
+         * 3. RENDERIZAÇÃO DOS 5 CARDS DA EQUIPE
+         */
+        function renderTeamCards() {
+            const teamGrid = document.getElementById('team-grid');
+            if (!teamGrid) return;
+
+            teamGrid.innerHTML = barbeirosData.map(barbeiro => {
+                const whatsappUrl = `https://wa.me/${barbeiro.whatsapp}?text=${encodeURIComponent(barbeiro.mensagem)}`;
+                
+                return `
+                    <div class="barber-card-wrapper">
+                        <article class="barber-card bg-dark-900 rounded-2xl border-2 border-zinc-800 overflow-hidden flex flex-col h-full">
+                            <!-- Foto do Rosto do Colaborador com Zoom Suave -->
+                            <div class="relative h-72 sm:h-64 xl:h-60 overflow-hidden bg-dark-800">
+                                <img src="${barbeiro.fotoRosto}" 
+                                     alt="Rosto de ${barbeiro.nome} - ${barbeiro.cargo}" 
+                                     onerror="this.src='https://placehold.co/600x600/1c1c21/d4af37?text=${encodeURIComponent(barbeiro.nome)}'"
+                                     class="barber-img w-full h-full object-cover object-top">
+                                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                                
+                                <!-- Selo de Experiência -->
+                                <span class="absolute top-3 right-3 bg-dark-950/85 backdrop-blur-sm text-gold-400 text-xs font-bold px-3 py-1 rounded-full border border-gold-500/30">
+                                    ${barbeiro.experiencia}
+                                </span>
+                            </div>
+
+                            <!-- Informações do Profissional -->
+                            <div class="p-5 flex flex-col flex-grow justify-between">
+                                <div>
+                                    <span class="text-gold-400 text-xs font-bold uppercase tracking-wider block mb-1">
+                                        ${barbeiro.cargo}
+                                    </span>
+                                    <h3 class="font-display font-bold text-xl text-white mb-2">
+                                        ${barbeiro.nome}
+                                    </h3>
+                                    <p class="text-zinc-400 text-sm leading-relaxed mb-5">
+                                        <i class="fa-solid fa-star text-gold-500 text-xs mr-1"></i> ${barbeiro.especialidade}
+                                    </p>
+                                </div>
+
+                                <!-- Botão Verde Direto para WhatsApp -->
+                                <a href="${whatsappUrl}" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="w-full bg-green-600 hover:bg-green-500 active:scale-[0.98] text-white font-bold text-sm py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-600/20 transition-all">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Entrar em Contato</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /**
+         * 4. LÓGICA INTERATIVA DA SEÇÃO DE VISAGISMO
+         */
+        let currentFaceShape = 'oval';
+
+        function renderVisagismoButtons() {
+            const container = document.getElementById('face-shape-buttons');
+            if (!container) return;
+
+            container.innerHTML = Object.values(visagismoData).map(shape => {
+                const isActive = shape.id === currentFaceShape;
+                const activeClasses = isActive 
+                    ? 'bg-dark-800 border-gold-500 text-gold-400 shadow-lg shadow-gold-500/15 scale-[1.02]' 
+                    : 'bg-dark-950/70 border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200';
+
+                return `
+                    <button type="button"
+                            onclick="selectFaceShape('${shape.id}')"
+                            class="p-4 sm:p-5 rounded-2xl border-2 transition-all flex flex-col items-center justify-center gap-3 text-center cursor-pointer ${activeClasses}">
+                        <div class="${isActive ? 'text-gold-400' : 'text-zinc-500'} transition-colors">
+                            ${shape.svgIcon}
+                        </div>
+                        <span class="font-bold text-base sm:text-lg block">${shape.titulo}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderVisagismoResult() {
+            const resultContainer = document.getElementById('visagismo-result');
+            if (!resultContainer) return;
+
+            const data = visagismoData[currentFaceShape];
+            const whatsappMsg = encodeURIComponent(`Olá! Fiz o teste de Visagismo no site da Barbearia Elite. Meu formato de rosto é *${data.titulo}* e gostaria de agendar o corte e barba recomendados!`);
+            const whatsappLink = `https://wa.me/5511999990000?text=${whatsappMsg}`;
+
+            resultContainer.innerHTML = `
+                <div class="fade-in-up grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <!-- Coluna Esquerda: Resumo do Formato -->
+                    <div class="lg:col-span-5 bg-dark-900 p-6 sm:p-8 rounded-2xl border border-zinc-700/80 text-center lg:text-left">
+                        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gold-500/10 text-gold-400 border border-gold-500/30 mb-5">
+                            ${data.svgIcon}
+                        </div>
+                        <span class="text-gold-400 text-sm font-bold uppercase tracking-wider block mb-1">Diagnóstico Visagista</span>
+                        <h3 class="font-display font-bold text-3xl sm:text-4xl text-white mb-2">${data.titulo}</h3>
+                        <p class="text-gold-300/90 font-medium text-base mb-4">${data.subtitulo}</p>
+                        <p class="text-zinc-300 text-base leading-relaxed mb-6">
+                            ${data.descricao}
+                        </p>
+                        <a href="${whatsappLink}" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="w-full gold-gradient-bg hover:brightness-110 text-dark-950 font-bold text-base sm:text-lg py-4 px-6 rounded-xl flex items-center justify-center gap-2.5 shadow-lg shadow-gold-500/20 transition-all">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Agendar Estilo para Rosto ${data.titulo.replace('Rosto ', '')}</span>
+                        </a>
+                    </div>
+
+                    <!-- Coluna Direita: Recomendações de Cabelo e Barba -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Card Recomendação de Cabelo -->
+                        <div class="bg-dark-900/90 p-6 sm:p-7 rounded-2xl border-l-4 border-gold-500">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-gold-500/15 text-gold-400 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-scissors"></i>
+                                </div>
+                                <span class="text-sm font-bold uppercase tracking-wider text-zinc-400">Corte de Cabelo Ideal</span>
+                            </div>
+                            <h4 class="font-bold text-xl sm:text-2xl text-white mb-2">${data.corteCabelo.nome}</h4>
+                            <p class="text-zinc-300 text-base leading-relaxed">${data.corteCabelo.dica}</p>
+                        </div>
+
+                        <!-- Card Recomendação de Barba -->
+                        <div class="bg-dark-900/90 p-6 sm:p-7 rounded-2xl border-l-4 border-gold-500">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-gold-500/15 text-gold-400 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <span class="text-sm font-bold uppercase tracking-wider text-zinc-400">Estilo de Barba Recomendado</span>
+                            </div>
+                            <h4 class="font-bold text-xl sm:text-2xl text-white mb-2">${data.estiloBarba.nome}</h4>
+                            <p class="text-zinc-300 text-base leading-relaxed">${data.estiloBarba.dica}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectFaceShape(shapeId) {
+            currentFaceShape = shapeId;
+            renderVisagismoButtons();
+            renderVisagismoResult();
+        }
+
+        /**
+         * 5. CONTROLE DO MENU MOBILE E INICIALIZAÇÃO
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Renderiza os 5 barbeiros e o painel inicial de visagismo
+            renderTeamCards();
+            renderVisagismoButtons();
+            renderVisagismoResult();
+
+            // Controle do menu responsivo mobile
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
