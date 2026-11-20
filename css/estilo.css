@@ -1,8 +1,8 @@
 /* ==========================================================
    WOVA.DEV | Estilos do site
    Índice: 1 Cores e fontes | 2 Base | 3 Menu | 4 Início
-           5 Sobre | 6 Tecnologias | 7 Projetos | 8 Contato
-           9 Celular
+           4b Serviços | 5 Sobre | 6 Tecnologias | 7 Projetos
+           8 Contato | 9 Celular
    ========================================================== */
 
 /* ---------- 1. CORES E FONTES ----------
@@ -63,6 +63,31 @@ h1{font:700 clamp(3rem,9vw,6.25rem)/.95 var(--display);letter-spacing:-.035em;ma
   .code{animation:rise .8s ease-out both}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 }
+
+/* ---------- 4b. SERVIÇOS ----------
+   Os cards se ajustam sozinhos: 4 lado a lado em tela grande,
+   2 em tablet e 1 no celular. */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));
+  gap:1.25rem;list-style:none;margin:0;padding:0
+}
+.service{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:.75rem;
+  padding:1.5rem;
+  display:flex;flex-direction:column;gap:.6rem;
+  transition:border-color .2s,transform .2s
+}
+.service:hover{border-color:var(--accent);transform:translateY(-3px)}
+.service .num{font:700 .9rem var(--display);color:var(--accent);letter-spacing:.05em} /* número 01, 02... */
+.service h3{font:500 1.25rem/1.2 var(--display);margin:0}
+.service p{color:var(--muted);font-size:.98rem;margin:0 0 .5rem}
+.service a{margin-top:auto;color:var(--accent);text-decoration:none;font-weight:500}
+.service a::after{content:" →"}
+.service a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.service:hover{transform:none}}
 
 /* ---------- 5. SOBRE (com a foto ao fundo) ----------
    A foto fica em ../img/foto-welder.jpg. Para trocar, substitua o arquivo
